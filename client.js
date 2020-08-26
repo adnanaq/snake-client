@@ -11,6 +11,15 @@ const connect = function () {
   conn.setEncoding('utf8');
 
   // Receving message from server if idling for too long.
+  conn.on('connect', () => {
+    console.log('Successfully Connected'); // logging message upon connection
+    // conn.write('Name: DNI'); // writing message to server.
+
+    // conn.write('Move: up')
+    // setTimeout(() => {
+    //   conn.write('Move: up'); // sending move signal to server.
+    // }, 3000);
+  })
   conn.on('data', data => {
     console.log(data);
   });
