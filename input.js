@@ -1,4 +1,15 @@
-const setupInput = function () {
+let connection;
+
+const obj = {
+  '\u0077': 'Move: up',
+  '\u0073': 'Move: down',
+  '\u0061': 'Move: left',
+  '\u0064': 'Move: right'
+}
+
+const setupInput = function (conn) {
+  connection = conn;
+
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');
@@ -6,9 +17,9 @@ const setupInput = function () {
   stdin.resume();
 
   stdin.on('data', key => {
-    handleUserInput(key)
+    handleUserInput(key);
+    connection.write(obj[key])
   });
-
   return stdin
 }
 
@@ -18,5 +29,7 @@ const handleUserInput = function (key) {
     process.exit()
   };
 }
+
+
 
 module.exports = setupInput;
