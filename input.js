@@ -1,5 +1,6 @@
 let connection;
 
+// binding keys 
 const obj = {
   '\u0077': 'Move: up',
   '\u0073': 'Move: down',
@@ -18,7 +19,8 @@ const setupInput = function (conn) {
 
   stdin.on('data', key => {
     handleUserInput(key);
-    connection.write(obj[key])
+    connection.write(obj[key]) // moving the snake based on the given key.
+    connection.write('Say: Helo')
   });
   return stdin
 }
